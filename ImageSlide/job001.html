@@ -1,0 +1,122 @@
+
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Inc.</title>
+  <link href="job001.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <header>
+  <!-- <div></div> -->
+   <!-- <img src="img/logo.png" alt="Creative inc. logo" class="logo">-->
+   <div class="header-contact">
+   </div>
+
+   <div class="header-contact">
+   </div>
+
+   <nav>
+     <ul>
+        <li> <a href="#">наши услуги</a> </li>
+        <li> <a href="#">акции</a> </li>
+        <li> <a href="#">отзывы</a> </li>
+        <li> <a href="#">о нас</a> </li>
+        <li> <a href="#">контакты</a> </li>
+     </ul>
+    </nav>
+
+
+    <div class="img-slide">
+        <div class="img-collection">
+          <img src="image4.jpg" id="lastClone" alt="">
+          <img src="image1.jpg" alt="">
+          <img src="image2.jpg" alt="">
+          <img src="image3.jpg" alt="">
+          <img src="image4.jpg" alt="">
+          <img src="image1.jpg" id="fristClone" alt="">
+        </div>
+
+        <div class="side-buttons">
+         <img  src="back.svg" id="prevBtn"></img>
+          <img  src="next.svg" id="nextBtn"></img>
+        </div>
+
+
+    </div>
+
+
+
+
+  </header>
+
+
+  <section class="home-hero">
+
+  </section>
+
+  <footer>
+
+  </footer>
+
+
+ <script>
+   const imgCollection =document.getElementsByClassName("img-collection")[0];
+   const imgAll =imgCollection.getElementsByTagName("img");
+
+   //Buttons
+   const prevBtn =document.getElementById("prevBtn");
+   const nextBtn =document.getElementById("nextBtn");
+
+   // Limit Images
+   const lastClone =document.getElementById("lastClone");
+   const fristClone =document.getElementById("fristClone");
+
+
+   let count=1;
+   const size =imgAll[0].clientWidth;
+   console.log(nextBtn);
+
+   imgCollection.style.transform="translateX("+(-size*count)+"px)";
+
+
+
+   // button controller
+   nextBtn.addEventListener('click',()=>{
+     if(count>=imgAll.length-1)return;
+     count+=1;
+     imgCollection.style.transition="transform 0.4s ease-in-out";
+     imgCollection.style.transform="translateX("+(-size*count)+"px)";
+   });
+   prevBtn.addEventListener('click',()=>{
+     if(count<=0)return;
+     count-=1;
+     imgCollection.style.transition="transform 0.4s ease-in-out";
+     imgCollection.style.transform="translateX("+(-size*count)+"px)";
+   });
+
+
+  // when getting limits
+   imgCollection.addEventListener('transitionend',()=>{
+     if(imgAll[count].id==='fristClone'){
+       count=1;
+       console.log('lastClone');
+       imgCollection.style.transition="none";
+       imgCollection.style.transform="translateX("+(-size*count)+"px)";
+     }
+     if(imgAll[count].id==='lastClone'){
+       count=imgAll.length-2;
+       imgCollection.style.transition="none";
+       imgCollection.style.transform="translateX("+(-size*count)+"px)";
+     }
+   });
+
+
+ </script>
+
+</body>
+
+</html>
